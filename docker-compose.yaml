@@ -1,0 +1,22 @@
+
+services:
+  redis:
+    image: 'redislabs/redismod'
+  web1:
+    restart: on-failure
+    build: ./web
+    hostname: web1
+  web2:
+    restart: on-failure
+    build: ./web
+    hostname: web2
+  nginx:
+    build: ./nginx
+    ports:
+    - target: 80
+      published: 80
+    depends_on:
+    - web1
+    - web2
+
+

@@ -2,21 +2,32 @@
 services:
   redis:
     image: 'redislabs/redismod'
+    networks:
+    - app_net
   web1:
     restart: on-failure
     build: ./web
     hostname: web1
+    networks:
+    - app_net
   web2:
     restart: on-failure
     build: ./web
     hostname: web2
+    networks:
+    - app_net
   nginx:
     build: ./nginx
     ports:
     - target: 80
       published: 80
+    networks:
+    - app_net
     depends_on:
     - web1
     - web2
+
+networks:
+  app_net:
 
 

@@ -7,7 +7,7 @@ const redisClient = redis.createClient({
   port: 6379
 });
 
-app.get('/' + os.hostname(), function(req, res) {
+app.get('/', function(req, res) {
     redisClient.get('numVisits', function(err, numVisits) {
         numVisitsToDisplay = parseInt(numVisits) + 1;
         if (isNaN(numVisitsToDisplay)) {

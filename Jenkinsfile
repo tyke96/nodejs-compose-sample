@@ -48,7 +48,7 @@ pipeline {
                 sh 'cp -u nginx/nginx.conf terraform/nginx.conf'
                 dir('terraform') {
                     sh 'terraform init'
-                    sh 'terraform apply --auto-approve --no-color -var config_path=${WORKSPACE}/config.yaml -var server_image=${registry}'
+                    sh 'terraform apply --auto-approve -var config_path=${WORKSPACE}/config.yaml -var server_image=${registry}'
                     sh 'terraform output --no-color'
                 }
             } 

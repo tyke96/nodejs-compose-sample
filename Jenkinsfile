@@ -49,7 +49,7 @@ pipeline {
                 dir('terraform') {
                     sh 'terraform init'
                     sh 'terraform apply --auto-approve -var config_path=${WORKSPACE}/config.yaml -var server_image=${registry}'
-                    sh 'terraform output --no-color'
+                    sh 'terraform output'
                 }
             } 
         } 
